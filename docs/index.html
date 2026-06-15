@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Skill-Core — Agent Skills 工具链</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <h1>Skill-Core</h1>
+      <p class="tagline">Design · Compile · Test · Install Agent Skills</p>
+    </div>
+  </header>
+
+  <nav class="wrap">
+    <a href="#quickstart">Quickstart</a>
+    <a href="#cli">CLI</a>
+    <a href="#install">Install</a>
+    <a href="#registry">Registry</a>
+    <a href="#migrate">Migrate</a>
+    <a href="#examples">Examples</a>
+    <a href="#protocol">Protocol</a>
+  </nav>
+
+  <main class="wrap">
+    <section id="intro">
+      <h2>What is Skill-Core?</h2>
+      <p>Skill-Core is a vendor-neutral toolchain for building <a href="https://agentskills.io">Agent Skills</a>. You author skills in IR (<code>references/ir.md</code>), compile to runtime <code>SKILL.md</code>, test, and install to any compatible host.</p>
+      <pre>Intent → IR → skill compile → SKILL.md → skill test → skill install</pre>
+    </section>
+
+    <section id="quickstart">
+      <h2>5-Minute Quickstart</h2>
+      <pre><code>python skill-core/skill.py init my-skill
+# edit my-skill/references/ir.md + eval.yaml
+python skill-core/skill.py compile my-skill
+python skill-core/skill.py test my-skill
+python skill-core/skill.py install my-skill --host cursor --scope global</code></pre>
+      <p>Windows: <code>skill init my-skill</code> via <code>skill.cmd</code></p>
+    </section>
+
+    <section id="cli">
+      <h2>CLI Reference</h2>
+      <table>
+        <thead><tr><th>Command</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>skill init &lt;name&gt;</code></td><td>Scaffold new skill</td></tr>
+          <tr><td><code>skill compile &lt;path&gt;</code></td><td>IR → SKILL.md</td></tr>
+          <tr><td><code>skill diff &lt;path&gt;</code></td><td>Detect IR drift</td></tr>
+          <tr><td><code>skill validate &lt;path&gt;</code></td><td>Validate SKILL.md</td></tr>
+          <tr><td><code>skill test &lt;path&gt;</code></td><td>L0/L1 automated tests</td></tr>
+          <tr><td><code>skill list</code></td><td>List registry skills</td></tr>
+          <tr><td><code>skill registry build</code></td><td>Rebuild registry.json</td></tr>
+          <tr><td><code>skill install &lt;name&gt;</code></td><td>Install to host</td></tr>
+          <tr><td><code>skill migrate &lt;file&gt; --name x</code></td><td>Migrate rule/command</td></tr>
+          <tr><td><code>skill migrate-scan</code></td><td>Batch migrate project rules</td></tr>
+          <tr><td><code>skill schema</code></td><td>Print IR JSON Schema</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="install">
+      <h2>Install Targets</h2>
+      <table>
+        <thead><tr><th>Host</th><th>Global</th><th>Project</th></tr></thead>
+        <tbody>
+          <tr><td>agents (default)</td><td><code>~/.agents/skills/</code></td><td><code>.agents/skills/</code></td></tr>
+          <tr><td>cursor</td><td><code>~/.cursor/skills/</code></td><td><code>.cursor/skills/</code></td></tr>
+          <tr><td>claude</td><td><code>~/.claude/skills/</code></td><td><code>.claude/skills/</code></td></tr>
+        </tbody>
+      </table>
+      <pre><code>skill install medium-commit-message --host cursor --scope global
+skill install ./my-skill --host agents --scope project --project /path/to/repo</code></pre>
+    </section>
+
+    <section id="registry">
+      <h2>Registry</h2>
+      <p><code>registry.json</code> indexes skills in this repo. Build after adding skills:</p>
+      <pre><code>skill registry build
+skill list
+skill list --tag example -v</code></pre>
+    </section>
+
+    <section id="migrate">
+      <h2>Migrate Legacy Rules</h2>
+      <p>Migrate Cursor rules, slash commands, or <code>.cursorrules</code> to Agent Skills format.</p>
+      <pre><code>skill migrate .cursor/rules/my-rule.mdc --name my-rule
+skill migrate-scan --project . --out ./skills</code></pre>
+      <p>Migrated body content is preserved verbatim. Review generated IR and re-compile when ready.</p>
+    </section>
+
+    <section id="examples">
+      <h2>Reference Skills</h2>
+      <ul>
+        <li><strong>simple-readme-writer</strong> — minimal narrative skill</li>
+        <li><strong>medium-commit-message</strong> — git workflow, decomposition</li>
+        <li><strong>complex-pr-review</strong> — scripts, standards, dependencies</li>
+      </ul>
+      <pre><code>skill compile examples
+skill test examples</code></pre>
+    </section>
+
+    <section id="protocol">
+      <h2>Protocol</h2>
+      <p>Skill-Core extends the <a href="https://agentskills.io/specification">Agent Skills open standard</a> with:</p>
+      <ul>
+        <li>13-section IR for authoring discipline</li>
+        <li>Portable tool IDs (host-agnostic)</li>
+        <li>L0/L1/L2 evaluation tiers</li>
+        <li>Compile + drift detection</li>
+      </ul>
+      <p>IR JSON Schema: <code>skill-core/schema/ir.schema.json</code></p>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <p>Skill-Core · Agent Skills toolchain · Open standard, any host</p>
+  </footer>
+</body>
+</html>

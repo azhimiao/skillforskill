@@ -1,0 +1,16 @@
+tests:
+  - id: T1
+    description: README workflow covers topic and summary headings
+    assert:
+      contains: ["ASK", "Summary", "Details"]
+      sections: ["Quick Start", "Failure Modes"]
+
+  - id: T2
+    description: missing topic triggers ask
+    assert:
+      contains: ["topic", "ASK"]
+
+  - id: T3
+    description: word limit decision exists
+    assert:
+      contains: ["max_words"]

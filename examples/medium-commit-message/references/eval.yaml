@@ -1,0 +1,16 @@
+tests:
+  - id: T1
+    description: conventional commit workflow
+    assert:
+      contains: ["git diff", "feat"]
+      sections: ["Workflow", "Failure Modes"]
+
+  - id: T2
+    description: empty staged changes handled
+    assert:
+      contains: ["git add", "staged"]
+
+  - id: T3
+    description: docs-only path
+    assert:
+      contains: ["docs"]

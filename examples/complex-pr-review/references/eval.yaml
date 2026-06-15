@@ -1,0 +1,21 @@
+tests:
+  - id: T1
+    description: PR review structure
+    assert:
+      contains: ["Critical", "Suggestion", "standards"]
+      sections: ["Workflow", "Sub-skills", "Failure Modes"]
+
+  - id: T2
+    description: missing PR input handling
+    assert:
+      contains: ["pr_number", "ASK"]
+
+  - id: T3
+    description: security focus branch
+    assert:
+      contains: ["security", "focus"]
+
+  - id: T4
+    description: script failure degradation
+    assert:
+      contains: ["check_diff", "manual"]

@@ -1,0 +1,5 @@
+include README.md LICENSE QUICKSTART.md requirements.txt registry.json skill skill.cmd pyproject.toml
+recursive-include skill-core *
+recursive-include examples *
+recursive-include docs *
+include .github/workflows/skills.yml

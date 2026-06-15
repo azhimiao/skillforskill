@@ -1,0 +1,50 @@
+{
+  "version": "1.0.0",
+  "generated_at": "2026-06-15T11:03:15.615941+00:00",
+  "skills": [
+    {
+      "name": "skill-core",
+      "version": "2.0.0",
+      "description": "Skill Protocol v2 compiler and meta-skill for building Agent Skills at scale. Defines the standardized IR, scaffolds new skills, validates compliance, and guides decomposition and evolution. Use when ",
+      "path": "skill-core",
+      "status": "stable",
+      "tags": [
+        "meta",
+        "scripts"
+      ]
+    },
+    {
+      "name": "complex-pr-review",
+      "version": "1.0.0",
+      "description": "Review pull requests for correctness, security, and maintainability using team standards. Use when author asks for PR review, code review before merge, or review checklist for a pull request.",
+      "path": "examples/complex-pr-review",
+      "status": "stable",
+      "tags": [
+        "scripts",
+        "example",
+        "review"
+      ]
+    },
+    {
+      "name": "medium-commit-message",
+      "version": "1.0.0",
+      "description": "Generate conventional commit messages from staged git diffs. Use when author asks for a commit message, help writing a commit, or review before git commit.",
+      "path": "examples/medium-commit-message",
+      "status": "stable",
+      "tags": [
+        "example",
+        "git"
+      ]
+    },
+    {
+      "name": "simple-readme-writer",
+      "version": "1.0.0",
+      "description": "Generate a concise README section for a given project topic. Use when author asks for README text, documentation section, or project intro paragraph.",
+      "path": "examples/simple-readme-writer",
+      "status": "stable",
+      "tags": [
+        "example"
+      ]
+    }
+  ]
+}
